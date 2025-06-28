@@ -315,3 +315,28 @@ canvas {
     padding: 4px 8px;
   }
 }
+
+/* Override untuk layar kecil (smartphone potrait, termasuk Android) */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  .container {
+    /* Nonaktifkan aspect ratio */
+    aspect-ratio: unset;
+
+    /* Buat lebih panjang ke bawah */
+    height: 70vh; /* Bisa disesuaikan: 60vh - 80vh */
+    width: 100%;
+    max-width: 100%;
+    background: var(--overlay);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+
+  /* Pastikan video dan canvas menyesuaikan */
+  video,
+  canvas {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover;
+  }
+}
+

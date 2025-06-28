@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ];
 
     const detectorOptions = new faceapi.TinyFaceDetectorOptions({
-        inputSize: 608,
+        inputSize: 512,
         scoreThreshold: 0.4,
     });
 
@@ -304,41 +304,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-// Blok klik kanan
-        document.addEventListener("contextmenu", e => e.preventDefault());
+// // Blok klik kanan
+// document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-        // Blok shortcut keyboard
-        document.addEventListener("keydown", function (e) {
-            const blockedKeys = ["F12", "F11", "F10", "F9", "PrintScreen"];
-            if (
-                blockedKeys.includes(e.key) ||
-                e.keyCode === 44 || // PrintScreen
-                e.keyCode === 91 || // Windows Key
-                (e.ctrlKey && ["u", "s", "p"].includes(e.key.toLowerCase())) ||
-                (e.ctrlKey && e.shiftKey && ["i", "c", "j"].includes(e.key.toLowerCase()))
-            ) {
-                e.preventDefault();
-                alert("Akses dibatasi demi keamanan.");
-            }
-        });
+// // Blok shortcut keyboard
+// document.addEventListener("keydown", function (e) {
+//     const blockedKeys = ["F12", "F11", "F10", "F9", "PrintScreen"];
+//     if (
+//         blockedKeys.includes(e.key) ||
+//         e.keyCode === 44 || // PrintScreen
+//         e.keyCode === 91 || // Windows Key
+//         (e.ctrlKey && ["u", "s", "p"].includes(e.key.toLowerCase())) ||
+//         (e.ctrlKey &&
+//             e.shiftKey &&
+//             ["i", "c", "j"].includes(e.key.toLowerCase()))
+//     ) {
+//         e.preventDefault();
+//         alert("Akses dibatasi demi keamanan.");
+//     }
+// });
 
-        // Coba mendeteksi PrintScreen (tidak pasti berhasil)
-        document.addEventListener("keyup", function(e) {
-            if (e.key === "PrintScreen") {
-                alert("Screenshot tidak diperbolehkan!");
-            }
-        });
+// // Coba mendeteksi PrintScreen (tidak pasti berhasil)
+// document.addEventListener("keyup", function (e) {
+//     if (e.key === "PrintScreen") {
+//         alert("Screenshot tidak diperbolehkan!");
+//     }
+// });
 
-        // Cegah long press di mobile
-        document.addEventListener('touchstart', preventLongPress, false);
-        document.addEventListener('touchend', preventLongPress, false);
-        let timer;
-        function preventLongPress(e) {
-            if (e.type === 'touchstart') {
-                timer = setTimeout(() => {
-                    e.preventDefault();
-                }, 500);
-            } else {
-                clearTimeout(timer);
-            }
-        }
+// // Cegah long press di mobile
+// document.addEventListener("touchstart", preventLongPress, false);
+// document.addEventListener("touchend", preventLongPress, false);
+// let timer;
+// function preventLongPress(e) {
+//     if (e.type === "touchstart") {
+//         timer = setTimeout(() => {
+//             e.preventDefault();
+//         }, 500);
+//     } else {
+//         clearTimeout(timer);
+//     }
+// }

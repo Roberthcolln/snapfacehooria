@@ -1,0 +1,317 @@
+:root {
+  --primary: #00ff88;
+  --primary-dark: #00c78c;
+  --danger: #ff5555;
+  --bg-dark: #111;
+  --bg-light: #fff;
+  --accent-yellow: #f8e825;
+  --overlay: rgba(0, 0, 0, 0.4);
+  --border-radius: 12px;
+  --text-light: #fff;
+  --text-muted: #bbb;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url('/images/1.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img.logo {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: rgb(169, 162, 162);
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0 12px;
+}
+
+/* Camera Container */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  background: var(--overlay);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+video,
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  display: block;
+}
+
+video {
+  border: 4px solid #343431;
+  z-index: 1;
+}
+
+canvas {
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Button */
+#startScanButton {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-dark), #009f6b);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 20px;
+}
+
+#startScanButton:hover {
+  background: linear-gradient(135deg, #00e699, #00b27a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+#startScanButton:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading Spinner */
+#loadingIndicator {
+  display: none;
+  margin: 20px;
+}
+
+.spinner {
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top: 6px solid var(--accent-yellow);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status Message */
+#statusMessage {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-light);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+#notFoundMessage {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--danger);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Wajah Dikenali Container */
+#recognizedFaceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Wrapper */
+.face-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Card Wajah */
+.face-card {
+  width: 100%;
+  max-width: 200px;
+  height: 260px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid var(--primary);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.face-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image */
+.image-wrapper {
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+
+.image-wrapper img.original {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.watermark-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/path/to/default-watermark.png');
+  background-size: 50px 50px;
+  background-repeat: repeat;
+  opacity: 0.1;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Similarity Info */
+.similarity-score {
+  position: relative;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.65);
+  color: var(--text-light);
+  padding: 6px 10px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+  font-weight: 500;
+}
+
+.similarity-score span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Tombol Opsi */
+.face-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.face-options button {
+  padding: 6px 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.face-options .yes-btn,
+.face-options .no-btn {
+  padding: 4px 8px;
+  font-size: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.face-options .yes-btn {
+  background-color: var(--primary-dark);
+}
+
+.face-options .no-btn {
+  background-color: var(--danger);
+}
+
+.face-options .yes-btn:hover,
+.face-options .no-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+
+.face-options button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Konfirmasi Animasi */
+.matched-face.confirmed {
+  animation: pulseConfirm 0.3s ease;
+}
+
+@keyframes pulseConfirm {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  img.logo {
+    max-width: 80px;
+  }
+
+  #recognizedFaceContainer {
+    gap: 14px;
+  }
+
+  .face-card {
+    max-width: 160px;
+    height: auto;
+  }
+
+  .image-wrapper {
+    height: 140px;
+  }
+
+  .face-options button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .similarity-score {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

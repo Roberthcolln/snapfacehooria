@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <title>{{ $konf->instansi_setting }}</title>
- 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
   <link rel="icon" href="{{ asset('favicon/'.$konf->favicon_setting) }}">
   <link rel="stylesheet" href="{{ asset('web/style.css') }}">
@@ -16,10 +17,24 @@
 <body data-watermark="{{ asset('watermark/' . $konf->watermark_setting) }}">
 
   <!-- Logo & Judul -->
-  <header style="text-align:center; margin-top:20px;">
-    <img class="logo" src="{{ asset('logo/'.$konf->logo_setting) }}" alt="Logo Instansi" style="height:80px;">
-    <h2>{{ $konf->instansi_setting }}</h2>
+  <header class="text-center mt-4" style="text-align:center; margin-top:20px;">
+    <img class="logo mb-3" src="{{ asset('logo/'.$konf->logo_setting) }}" alt="Logo Instansi" style="height:80px;">
+    <h2 class="fw-bold">{{ $konf->instansi_setting }}</h2>
+
+    <div class="mt-4 mx-auto" style="max-width: 600px;">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h4 class="card-title mb-3">📷 Kualitas Selfie Mempengaruhi Akurasi Pencarian Foto</h4>
+          <p class="text-start">
+            1. Harap jangan menggunakan aksesoris apapun (topi, kacamata, dll)<br>
+            2. Pastikan wajah kamu jelas dan tidak tertutup rambut<br>
+            3. Atur pencahayaan agar wajah kamu terlihat jelas
+          </p>
+        </div>
+      </div>
+    </div>
   </header>
+
 
   <!-- Tombol Scan -->
   <div style="text-align:center; margin: 20px;">
@@ -56,4 +71,5 @@
   <script src="{{ asset('web/scan.js') }}"></script>
 
 </body>
+
 </html>
